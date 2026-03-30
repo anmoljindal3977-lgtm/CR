@@ -69,3 +69,9 @@ We use LLM to explain the decision in human language. The LLM is only for explan
 ## 10. Observations
 
 The system is simple and easy to understand. We kept everything basic so it's not too complicated. As we build more, we can update this document.
+
+## 11. Scenario Testing
+
+We tested the system with different types of users to see how it behaves in various cases. This helps us understand if the pipeline works for happy paths, fraud cases, and edge cases. We run multiple scenarios through the full pipeline and check the outputs.
+
+[INSERT: scenario results table]

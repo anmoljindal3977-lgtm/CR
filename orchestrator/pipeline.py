@@ -2,6 +2,7 @@ from agents.data_validator import validate_application
 from agents.alt_credit import generate_alt_credit
 from agents.risk_model import predict_risk
 from agents.decision_engine import make_decision
+from orchestrator.explanation import generate_explanation
 
 def run_pipeline(data: dict) -> dict:
     # checking validation first
