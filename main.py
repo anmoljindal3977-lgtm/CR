@@ -1,7 +1,8 @@
-from agents.risk_model import predict_risk
+from orchestrator.pipeline import run_pipeline
 
 def main():
     test_data = {
+        "SK_ID_CURR": 100002,
         "AMT_CREDIT": 400000,
         "AMT_INCOME_TOTAL": 250000,
         "AMT_ANNUITY": 20000,
@@ -12,9 +13,7 @@ def main():
         "EXT_SOURCE_3": 0.5
     }
 
-    result = predict_risk(test_data)
-
-    print("\nRisk Output:")
+    result = run_pipeline(test_data)
     print(result)
 
 if __name__ == "__main__":
