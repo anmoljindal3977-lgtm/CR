@@ -60,6 +60,12 @@ We tested each part separately. Here are placeholders for sample outputs:
 
 [INSERT: final decision output]
 
-## 9. Observations
+## 9. LLM Explanation Layer
+
+We use LLM to explain the decision in human language. The LLM is only for explanation, not used for decision making. It takes the results and makes them easy to understand.
+
+[INSERT: sample explanation output]
+
+## 10. Observations
 
 The system is simple and easy to understand. We kept everything basic so it's not too complicated. As we build more, we can update this document.
