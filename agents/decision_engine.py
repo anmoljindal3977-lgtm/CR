@@ -1,4 +1,11 @@
+"""
+This file makes final decisions based on risk and credit scores.
+"""
+
 def make_decision(risk: dict, alt_credit: dict) -> dict:
+    """
+    Decides approve, reject, or manual review based on scores.
+    """
     p_default = risk['p_default']
     alt_credit_score = alt_credit['alt_credit_score']
 

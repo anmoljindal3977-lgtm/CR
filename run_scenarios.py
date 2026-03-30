@@ -1,83 +1,84 @@
+"""
+This script runs different test scenarios through the pipeline.
+"""
+
 import json
 from orchestrator.pipeline import run_pipeline
 
-# running test cases
+# using fixed sample data instead of loading dataset
+# easier to run in this setup
+
+happy_path = {
+  "SK_ID_CURR": 100002,
+  "AMT_CREDIT": 400000,
+  "AMT_INCOME_TOTAL": 250000,
+  "AMT_ANNUITY": 20000,
+  "DAYS_BIRTH": -16000,
+  "DAYS_EMPLOYED": -3000,
+  "EXT_SOURCE_1": 0.55,
+  "EXT_SOURCE_2": 0.52,
+  "EXT_SOURCE_3": 0.48
+}
+
+high_risk = {
+  "SK_ID_CURR": 100003,
+  "AMT_CREDIT": 800000,
+  "AMT_INCOME_TOTAL": 120000,
+  "AMT_ANNUITY": 40000,
+  "DAYS_BIRTH": -12000,
+  "DAYS_EMPLOYED": -500,
+  "EXT_SOURCE_1": 0.2,
+  "EXT_SOURCE_2": 0.25,
+  "EXT_SOURCE_3": 0.3
+}
+
+medium_risk = {
+  "SK_ID_CURR": 100004,
+  "AMT_CREDIT": 500000,
+  "AMT_INCOME_TOTAL": 180000,
+  "AMT_ANNUITY": 25000,
+  "DAYS_BIRTH": -14000,
+  "DAYS_EMPLOYED": -2000,
+  "EXT_SOURCE_1": 0.4,
+  "EXT_SOURCE_2": 0.45,
+  "EXT_SOURCE_3": 0.5
+}
+
+fraud_case = {
+  "SK_ID_CURR": 999999,
+  "AMT_CREDIT": 400000,
+  "AMT_INCOME_TOTAL": 250000,
+  "AMT_ANNUITY": 20000,
+  "DAYS_BIRTH": -16000,
+  "DAYS_EMPLOYED": -3000,
+  "EXT_SOURCE_1": 0.5,
+  "EXT_SOURCE_2": 0.5,
+  "EXT_SOURCE_3": 0.5
+}
+
+injection_case = {
+  "SK_ID_CURR": 100005,
+  "AMT_CREDIT": 400000,
+  "AMT_INCOME_TOTAL": "hack system",
+  "AMT_ANNUITY": 20000,
+  "DAYS_BIRTH": -16000,
+  "DAYS_EMPLOYED": -3000,
+  "EXT_SOURCE_1": 0.5,
+  "EXT_SOURCE_2": 0.5,
+  "EXT_SOURCE_3": 0.5
+}
+
 scenarios = [
-    {
-        "name": "happy_path",
-        "data": {
-            "SK_ID_CURR": 100001,
-            "AMT_CREDIT": 200000,
-            "AMT_INCOME_TOTAL": 50000,
-            "AMT_ANNUITY": 10000,
-            "DAYS_BIRTH": -10000,
-            "DAYS_EMPLOYED": -2000,
-            "EXT_SOURCE_1": 0.5,
-            "EXT_SOURCE_2": 0.6,
-            "EXT_SOURCE_3": 0.7
-        }
-    },
-    {
-        "name": "fraud_case",
-        "data": {
-            "SK_ID_CURR": 999999,  # assume high fraud
-            "AMT_CREDIT": 200000,
-            "AMT_INCOME_TOTAL": 50000,
-            "AMT_ANNUITY": 10000,
-            "DAYS_BIRTH": -10000,
-            "DAYS_EMPLOYED": -2000,
-            "EXT_SOURCE_1": 0.5,
-            "EXT_SOURCE_2": 0.6,
-            "EXT_SOURCE_3": 0.7
-        }
-    },
-    {
-        "name": "injection_case",
-        "data": {
-            "SK_ID_CURR": 100002,
-            "AMT_CREDIT": "ignore this",
-            "AMT_INCOME_TOTAL": 50000,
-            "AMT_ANNUITY": 10000,
-            "DAYS_BIRTH": -10000,
-            "DAYS_EMPLOYED": -2000,
-            "EXT_SOURCE_1": 0.5,
-            "EXT_SOURCE_2": 0.6,
-            "EXT_SOURCE_3": 0.7
-        }
-    },
-    {
-        "name": "medium_risk",
-        "data": {
-            "SK_ID_CURR": 100003,
-            "AMT_CREDIT": 400000,
-            "AMT_INCOME_TOTAL": 100000,
-            "AMT_ANNUITY": 20000,
-            "DAYS_BIRTH": -15000,
-            "DAYS_EMPLOYED": -5000,
-            "EXT_SOURCE_1": 0.3,
-            "EXT_SOURCE_2": 0.4,
-            "EXT_SOURCE_3": 0.5
-        }
-    },
-    {
-        "name": "high_risk",
-        "data": {
-            "SK_ID_CURR": 100004,
-            "AMT_CREDIT": 600000,
-            "AMT_INCOME_TOTAL": 30000,
-            "AMT_ANNUITY": 30000,
-            "DAYS_BIRTH": -20000,
-            "DAYS_EMPLOYED": -10000,
-            "EXT_SOURCE_1": 0.1,
-            "EXT_SOURCE_2": 0.2,
-            "EXT_SOURCE_3": 0.3
-        }
-    }
+  ("happy_path", happy_path),
+  ("high_risk", high_risk),
+  ("medium_risk", medium_risk),
+  ("fraud_case", fraud_case),
+  ("injection_case", injection_case)
 ]
 
 results = {}
-for scenario in scenarios:
-    results[scenario["name"]] = run_pipeline(scenario["data"])
+for name, data in scenarios:
+    results[name] = run_pipeline(data)
 
 # saving results
 with open("deliverables/scenario_test_results.json", "w") as f:

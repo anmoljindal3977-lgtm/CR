@@ -1,7 +1,13 @@
+"""
+This file checks if application data is valid.
+"""
+
 from tools.tools import lookup_fraud_watchlist
 
 def validate_application(data: dict) -> dict:
-    # check the app data
+    """
+    Validates the input data for required fields and fraud.
+    """
     # check needed fields
     required_fields = ['SK_ID_CURR', 'AMT_CREDIT', 'AMT_INCOME_TOTAL']
     for field in required_fields:

@@ -1,7 +1,14 @@
+"""
+This file predicts risk using a machine learning model.
+"""
+
 import pandas as pd
 import joblib
 
 def predict_risk(data: dict) -> dict:
+    """
+    Loads model and predicts default probability.
+    """
     # loading model
     model = joblib.load('models/risk_model.pkl')
 

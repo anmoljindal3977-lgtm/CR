@@ -74,4 +74,39 @@ The system is simple and easy to understand. We kept everything basic so it's no
 
 We tested the system with different types of users to see how it behaves in various cases. This helps us understand if the pipeline works for happy paths, fraud cases, and edge cases. We run multiple scenarios through the full pipeline and check the outputs.
 
+Due to environment limitations, we used representative sample inputs derived from dataset patterns instead of loading the full dataset.
+
 [INSERT: scenario results table]
+
+## 12. Sub-Agent Evaluation
+
+We used test dataset and created basic labels to evaluate agent. We used application_test.csv for evaluation. Since test set has no labels, we created simple rule-based labels.
+
+[INSERT: evaluation metrics]
+[INSERT: sample predictions]
+
+## 13. Framework Selection (LangGraph)
+
+We used graph instead of manual pipeline. We used langgraph to define agent flow. Each agent is a node in the graph. Validation decides whether pipeline continues.
+
+Validator → Alt Credit → Risk → Decision
+
+[INSERT: langgraph flow explanation]
+
+## 14. Observability & Tracing
+
+We tracked each step in pipeline using a trace log.
+
+[INSERT: sample trace JSON]
+
+## 15. Prompt Engineering
+
+We used markdown prompts with few-shot examples.
+
+## 16. Human in the Loop
+
+System pauses for uncertain cases.
+
+## 17. Code Documentation
+
+We added simple comments and docstrings to make code easy to understand.

@@ -1,3 +1,7 @@
+"""
+This file has helper tools for fraud checking and credit scoring.
+"""
+
 # bad ids list
 # normally from a db
 fraud_db = {
@@ -7,11 +11,17 @@ fraud_db = {
 }
 
 def lookup_fraud_watchlist(sk_id: int) -> float:
+    """
+    Gets fraud score for an ID from database.
+    """
     # get the fraud score for this id
     # Return the score from the database if present, otherwise default to 0.1
     return fraud_db.get(sk_id, 0.1)
 
 def compute_alt_credit_score(data: dict) -> dict:
+    """
+    Calculates alternative credit score based on income and credit.
+    """
     # figure out alt credit score
     # Extract required fields
     income = data.get('AMT_INCOME_TOTAL', 0)

@@ -1,0 +1,84 @@
+{
+    "happy_path": {
+        "validator": {
+            "status": "PASS",
+            "reason": "Validation passed",
+            "fraud_score": 0.3,
+            "flags": []
+        },
+        "alt_credit": {
+            "alt_credit_score": 0.625,
+            "income_credit_ratio": 0.625,
+            "comment": "score based on how much income compared to credit amount"
+        },
+        "risk": {
+            "p_default": 0.0473386135053975,
+            "model_used": "lightgbm",
+            "comment": "simple probability from model"
+        },
+        "decision": {
+            "decision": "APPROVE",
+            "reason": "Low default probability and good alternative credit score"
+        }
+    },
+    "high_risk": {
+        "validator": {
+            "status": "FAIL",
+            "reason": "High fraud score",
+            "fraud_score": 0.8,
+            "flags": []
+        }
+    },
+    "medium_risk": {
+        "validator": {
+            "status": "PASS",
+            "reason": "Validation passed",
+            "fraud_score": 0.1,
+            "flags": []
+        },
+        "alt_credit": {
+            "alt_credit_score": 0.36,
+            "income_credit_ratio": 0.36,
+            "comment": "score based on how much income compared to credit amount"
+        },
+        "risk": {
+            "p_default": 0.0954096643653338,
+            "model_used": "lightgbm",
+            "comment": "simple probability from model"
+        },
+        "decision": {
+            "decision": "MANUAL_REVIEW",
+            "reason": "Moderate risk, requires manual review"
+        }
+    },
+    "fraud_case": {
+        "validator": {
+            "status": "PASS",
+            "reason": "Validation passed",
+            "fraud_score": 0.1,
+            "flags": []
+        },
+        "alt_credit": {
+            "alt_credit_score": 0.625,
+            "income_credit_ratio": 0.625,
+            "comment": "score based on how much income compared to credit amount"
+        },
+        "risk": {
+            "p_default": 0.05601005372584981,
+            "model_used": "lightgbm",
+            "comment": "simple probability from model"
+        },
+        "decision": {
+            "decision": "MANUAL_REVIEW",
+            "reason": "Moderate risk, requires manual review"
+        }
+    },
+    "injection_case": {
+        "validator": {
+            "status": "FAIL",
+            "reason": "INJECTION_DETECTED",
+            "fraud_score": 0.0,
+            "flags": []
+        }
+    }
+}
