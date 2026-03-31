@@ -8,7 +8,6 @@ def main():
     """
     Runs the pipeline with sample data and prints result.
     """
-    # sample data for testing
     test_data = {
         "SK_ID_CURR": 100002,
         "AMT_CREDIT": 400000,
@@ -21,7 +20,7 @@ def main():
         "EXT_SOURCE_3": 0.5
     }
 
-    result = run_langgraph_pipeline(test_data)
+    result = run_langgraph_pipeline(test_data, interactive=False, manual_override='n')
     print(result)
 
 if __name__ == "__main__":

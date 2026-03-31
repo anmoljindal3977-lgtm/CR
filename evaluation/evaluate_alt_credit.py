@@ -13,6 +13,7 @@ required_columns = [
     'EXT_SOURCE_1', 'EXT_SOURCE_2', 'EXT_SOURCE_3', 'SK_ID_CURR'
 ]
 df = df[required_columns]
+df = df.dropna()  # drop rows with NaN
 df = df.head(20)
 
 # creating basic labels

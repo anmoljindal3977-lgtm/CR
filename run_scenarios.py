@@ -78,7 +78,18 @@ scenarios = [
 
 results = {}
 for name, data in scenarios:
-    results[name] = run_pipeline(data)
+    print(f"\n Testing scenario: {name} ")
+    print(f"Input data: {json.dumps(data, indent=2)}")
+    
+    result = run_pipeline(data, interactive=True)  # allow interactive for manual review
+    
+    decision = result.get("decision", {}).get("decision", "N/A")
+    explanation = result.get("explanation", "No explanation generated")
+    
+    print(f"Decision: {decision}")
+    print(f"Explanation: {explanation}")
+    
+    results[name] = result
 
 # saving results
 with open("deliverables/scenario_test_results.json", "w") as f:
