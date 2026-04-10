@@ -4,6 +4,12 @@ This file generates explanations for decisions using LLM.
 
 import subprocess
 import json
+from utils.guardrails import (
+    validate_output_schema,
+    check_explanation_grounding,
+    redact_sensitive_data,
+    filter_harmful_content
+)
 
 
 def _compose_prompt(payload: dict) -> str:
@@ -122,6 +128,30 @@ def generate_explanation(result: dict) -> str:
         explanation = raw_out
         if explanation.upper() == "N/A" or explanation == "":
             raise RuntimeError("Invalid explanation from LLM")
+
+        print("Guardrail: Applying validate_output_schema...")
+        schema_valid, explanation, schema_reason = validate_output_schema(explanation, schema_type='explanation')
+        if not schema_valid:
+            raise RuntimeError(schema_reason)
+        print("Schema validation passed")
+
+        print("Guardrail: Applying check_explanation_grounding...")
+        grounded, _, grounding_reason = check_explanation_grounding(explanation, payload)
+        if not grounded:
+            raise RuntimeError(grounding_reason)
+        print("Explanation grounding check passed")
+
+        print("Guardrail: Applying redact_sensitive_data...")
+        redacted_ok, explanation, _ = redact_sensitive_data(explanation)
+        if not redacted_ok:
+            raise RuntimeError("PII redaction failed")
+        print(" PII redaction completed")
+
+        print("Guardrail: Applying filter_harmful_content...")
+        filtered, explanation, filter_reason = filter_harmful_content(explanation)
+        if not filtered:
+            raise RuntimeError(filter_reason)
+        print(" Harmful content filtering passed")
 
         return explanation
 

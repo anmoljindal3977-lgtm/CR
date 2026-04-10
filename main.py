@@ -2,7 +2,7 @@
 This file runs the main pipeline with test data.
 """
 
-from orchestrator.langgraph_pipeline import run_langgraph_pipeline
+from orchestrator.langgraoh_pipline import run_langgraoh_pipline
 
 def main():
     """
@@ -20,7 +20,7 @@ def main():
         "EXT_SOURCE_3": 0.5
     }
 
-    result = run_langgraph_pipeline(test_data, interactive=False, manual_override='n')
+    result = run_langgraoh_pipline(test_data, interactive=False, manual_override='n')
     print(result)
 
 if __name__ == "__main__":
