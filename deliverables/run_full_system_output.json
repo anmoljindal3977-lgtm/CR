@@ -1,0 +1,345 @@
+{
+    "main_output": "{'validator': {'status': 'PASS', 'reason': 'Validation passed', 'fraud_score': 0.3, 'flags': []}, 'alt_credit': {'alt_credit_score': 0.625, 'income_credit_ratio': 0.625, 'comment': 'score based on how much income compared to credit amount'}, 'risk': {'p_default': 0.05601005372584981, 'model_used': 'lightgbm', 'comment': 'simple probability from model'}, 'decision': {'decision': 'REJECT', 'reason': 'Rejected after manual review', 'manual_review_details': {'risk_probability': 0.05601005372584981, 'alt_credit_score': 0.625, 'risk_comment': 'simple probability from model', 'alt_credit_comment': 'score based on how much income compared to credit amount', 'decision_reason': 'Moderate risk, requires manual review'}}, 'explanation': 'Reject: high risk or validation issue detected.', 'trace': [{'step': 'validator', 'output': {'status': 'PASS', 'reason': 'Validation passed', 'fraud_score': 0.3, 'flags': []}}, {'step': 'alt_credit', 'output': {'alt_credit_score': 0.625, 'income_credit_ratio': 0.625, 'comment': 'score based on how much income compared to credit amount'}}, {'step': 'risk', 'output': {'p_default': 0.05601005372584981, 'model_used': 'lightgbm', 'comment': 'simple probability from model'}}, {'step': 'decision', 'output': {'decision': 'REJECT', 'reason': 'Rejected after manual review', 'manual_review_details': {'risk_probability': 0.05601005372584981, 'alt_credit_score': 0.625, 'risk_comment': 'simple probability from model', 'alt_credit_comment': 'score based on how much income compared to credit amount', 'decision_reason': 'Moderate risk, requires manual review'}}}, {'step': 'explanation', 'output': 'Reject: high risk or validation issue detected.'}]}",
+    "scenario_results": {
+        "happy_path": {
+            "validator": {
+                "status": "PASS",
+                "reason": "Validation passed",
+                "fraud_score": 0.3,
+                "flags": []
+            },
+            "alt_credit": {
+                "alt_credit_score": 0.625,
+                "income_credit_ratio": 0.625,
+                "comment": "score based on how much income compared to credit amount"
+            },
+            "risk": {
+                "p_default": 0.0473386135053975,
+                "model_used": "lightgbm",
+                "comment": "simple probability from model"
+            },
+            "decision": {
+                "decision": "APPROVE",
+                "reason": "Low default probability and good alternative credit score"
+            },
+            "explanation": "Approve: credit is low risk based on score model and alternative credit check.",
+            "trace": [
+                {
+                    "step": "validator",
+                    "output": {
+                        "status": "PASS",
+                        "reason": "Validation passed",
+                        "fraud_score": 0.3,
+                        "flags": []
+                    }
+                },
+                {
+                    "step": "alt_credit",
+                    "output": {
+                        "alt_credit_score": 0.625,
+                        "income_credit_ratio": 0.625,
+                        "comment": "score based on how much income compared to credit amount"
+                    }
+                },
+                {
+                    "step": "risk",
+                    "output": {
+                        "p_default": 0.0473386135053975,
+                        "model_used": "lightgbm",
+                        "comment": "simple probability from model"
+                    }
+                },
+                {
+                    "step": "decision",
+                    "output": {
+                        "decision": "APPROVE",
+                        "reason": "Low default probability and good alternative credit score"
+                    }
+                },
+                {
+                    "step": "explanation",
+                    "output": "Approve: credit is low risk based on score model and alternative credit check."
+                }
+            ]
+        },
+        "high_risk": {
+            "validator": {
+                "status": "FAIL",
+                "reason": "High fraud score",
+                "fraud_score": 0.8,
+                "flags": []
+            },
+            "alt_credit": null,
+            "risk": null,
+            "decision": {
+                "decision": "INVALID",
+                "reason": "High fraud score"
+            },
+            "explanation": "Invalid input: High fraud score.",
+            "trace": [
+                {
+                    "step": "validator",
+                    "output": {
+                        "status": "FAIL",
+                        "reason": "High fraud score",
+                        "fraud_score": 0.8,
+                        "flags": []
+                    }
+                },
+                {
+                    "step": "explanation",
+                    "output": "Invalid input: High fraud score."
+                }
+            ]
+        },
+        "medium_risk": {
+            "validator": {
+                "status": "PASS",
+                "reason": "Validation passed",
+                "fraud_score": 0.1,
+                "flags": []
+            },
+            "alt_credit": {
+                "alt_credit_score": 0.36,
+                "income_credit_ratio": 0.36,
+                "comment": "score based on how much income compared to credit amount"
+            },
+            "risk": {
+                "p_default": 0.0954096643653338,
+                "model_used": "lightgbm",
+                "comment": "simple probability from model"
+            },
+            "decision": {
+                "decision": "REJECT",
+                "reason": "Rejected after manual review",
+                "manual_review_details": {
+                    "risk_probability": 0.0954096643653338,
+                    "alt_credit_score": 0.36,
+                    "risk_comment": "simple probability from model",
+                    "alt_credit_comment": "score based on how much income compared to credit amount",
+                    "decision_reason": "Moderate risk, requires manual review"
+                }
+            },
+            "explanation": "Reject: high risk or validation issue detected.",
+            "trace": [
+                {
+                    "step": "validator",
+                    "output": {
+                        "status": "PASS",
+                        "reason": "Validation passed",
+                        "fraud_score": 0.1,
+                        "flags": []
+                    }
+                },
+                {
+                    "step": "alt_credit",
+                    "output": {
+                        "alt_credit_score": 0.36,
+                        "income_credit_ratio": 0.36,
+                        "comment": "score based on how much income compared to credit amount"
+                    }
+                },
+                {
+                    "step": "risk",
+                    "output": {
+                        "p_default": 0.0954096643653338,
+                        "model_used": "lightgbm",
+                        "comment": "simple probability from model"
+                    }
+                },
+                {
+                    "step": "decision",
+                    "output": {
+                        "decision": "REJECT",
+                        "reason": "Rejected after manual review",
+                        "manual_review_details": {
+                            "risk_probability": 0.0954096643653338,
+                            "alt_credit_score": 0.36,
+                            "risk_comment": "simple probability from model",
+                            "alt_credit_comment": "score based on how much income compared to credit amount",
+                            "decision_reason": "Moderate risk, requires manual review"
+                        }
+                    }
+                },
+                {
+                    "step": "explanation",
+                    "output": "Reject: high risk or validation issue detected."
+                }
+            ]
+        },
+        "fraud_case": {
+            "validator": {
+                "status": "PASS",
+                "reason": "Validation passed",
+                "fraud_score": 0.1,
+                "flags": []
+            },
+            "alt_credit": {
+                "alt_credit_score": 0.625,
+                "income_credit_ratio": 0.625,
+                "comment": "score based on how much income compared to credit amount"
+            },
+            "risk": {
+                "p_default": 0.05601005372584981,
+                "model_used": "lightgbm",
+                "comment": "simple probability from model"
+            },
+            "decision": {
+                "decision": "APPROVE",
+                "reason": "Approved after manual review",
+                "manual_review_details": {
+                    "risk_probability": 0.05601005372584981,
+                    "alt_credit_score": 0.625,
+                    "risk_comment": "simple probability from model",
+                    "alt_credit_comment": "score based on how much income compared to credit amount",
+                    "decision_reason": "Moderate risk, requires manual review"
+                }
+            },
+            "explanation": "Approve: credit is low risk based on score model and alternative credit check.",
+            "trace": [
+                {
+                    "step": "validator",
+                    "output": {
+                        "status": "PASS",
+                        "reason": "Validation passed",
+                        "fraud_score": 0.1,
+                        "flags": []
+                    }
+                },
+                {
+                    "step": "alt_credit",
+                    "output": {
+                        "alt_credit_score": 0.625,
+                        "income_credit_ratio": 0.625,
+                        "comment": "score based on how much income compared to credit amount"
+                    }
+                },
+                {
+                    "step": "risk",
+                    "output": {
+                        "p_default": 0.05601005372584981,
+                        "model_used": "lightgbm",
+                        "comment": "simple probability from model"
+                    }
+                },
+                {
+                    "step": "decision",
+                    "output": {
+                        "decision": "APPROVE",
+                        "reason": "Approved after manual review",
+                        "manual_review_details": {
+                            "risk_probability": 0.05601005372584981,
+                            "alt_credit_score": 0.625,
+                            "risk_comment": "simple probability from model",
+                            "alt_credit_comment": "score based on how much income compared to credit amount",
+                            "decision_reason": "Moderate risk, requires manual review"
+                        }
+                    }
+                },
+                {
+                    "step": "explanation",
+                    "output": "Approve: credit is low risk based on score model and alternative credit check."
+                }
+            ]
+        },
+        "injection_case": {
+            "validator": {
+                "status": "FAIL",
+                "reason": "Prompt injection pattern detected.",
+                "fraud_score": 0.0,
+                "flags": []
+            },
+            "alt_credit": null,
+            "risk": null,
+            "decision": {
+                "decision": "INVALID",
+                "reason": "Prompt injection pattern detected."
+            },
+            "explanation": "Invalid input: Prompt injection pattern detected..",
+            "trace": [
+                {
+                    "step": "validator",
+                    "output": {
+                        "status": "FAIL",
+                        "reason": "Prompt injection pattern detected.",
+                        "fraud_score": 0.0,
+                        "flags": []
+                    }
+                },
+                {
+                    "step": "explanation",
+                    "output": "Invalid input: Prompt injection pattern detected.."
+                }
+            ]
+        },
+        "off_domain_case": {
+            "validator": {
+                "status": "FAIL",
+                "reason": "Unexpected field(s): ['query'].",
+                "fraud_score": 0.0,
+                "flags": []
+            },
+            "alt_credit": null,
+            "risk": null,
+            "decision": {
+                "decision": "INVALID",
+                "reason": "Unexpected field(s): ['query']."
+            },
+            "explanation": "Invalid input: Unexpected field(s): ['query']..",
+            "trace": [
+                {
+                    "step": "validator",
+                    "output": {
+                        "status": "FAIL",
+                        "reason": "Unexpected field(s): ['query'].",
+                        "fraud_score": 0.0,
+                        "flags": []
+                    }
+                },
+                {
+                    "step": "explanation",
+                    "output": "Invalid input: Unexpected field(s): ['query'].."
+                }
+            ]
+        }
+    },
+    "evaluation": "Precision: 0.6\nRecall: 1.0\nF1 Score: 0.75",
+    "trace": [
+        {
+            "step": "validator",
+            "output": {
+                "status": "PASS",
+                "reason": "Validation passed",
+                "fraud_score": 0.3,
+                "flags": []
+            }
+        },
+        {
+            "step": "alt_credit",
+            "output": {
+                "alt_credit_score": 0.625,
+                "income_credit_ratio": 0.625,
+                "comment": "score based on how much income compared to credit amount"
+            }
+        },
+        {
+            "step": "risk",
+            "output": {
+                "p_default": 0.0473386135053975,
+                "model_used": "lightgbm",
+                "comment": "simple probability from model"
+            }
+        },
+        {
+            "step": "decision",
+            "output": {
+                "decision": "APPROVE",
+                "reason": "Low default probability and good alternative credit score"
+            }
+        },
+        {
+            "step": "explanation",
+            "output": "Approve: credit is low risk based on score model and alternative credit check."
+        }
+    ]
+}
