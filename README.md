@@ -29,27 +29,46 @@ INPUT → validate_raw_input → validate_input_schema → data_validator → al
 
 ## Project Structure
 ```
-agents/
-├── data_validator.py
-├── alt_credit.py
-├── risk_model.py
-└── decision_engine.py
-orchestrator/
-├── langgraoh_pipline.py
-└── explanation.py
-utils/
-└── guardrails.py
-prompts/
-└── explanation.md
-tests/
-└── test_guardrails.py
-evaluation/
-└── evaluate_alt_credit.py
-deliverables/
-├── scenario_test_results.json
-├── scenario_test_results_table.md
-└── run_full_system_output.json
-
+.
+├── agents/
+│   ├── data_validator.py
+│   ├── alt_credit.py
+│   ├── risk_model.py
+│   └── decision_engine.py
+├── configs/
+│   └── rules.yaml
+├── data/
+│   ├── application_test.csv
+│   ├── application_train.csv
+│   ├── sample_input.json
+│   └── sample_submission.csv
+├── deliverables/
+│   ├── run_full_system_output.json
+│   ├── scenario_test_results.json
+│   └── scenario_test_results_table.md
+├── evaluation/
+│   └── evaluate_alt_credit.py
+├── models/
+│   └── readme.md
+├── orchestrator/
+│   ├── langgraoh_pipline.py
+│   └── explanation.py
+├── prompts/
+│   └── explanation.md
+├── tests/
+│   └── test_guardrails.py
+├── tools/
+│   └── tools.py
+└── utils/
+    
+    └── guardrails.py
+├── README.md
+├── requirements.txt
+├── main.py
+├── run_full_system.py
+├── run_scenarios.py
+├── train_model.py
+├── credit_risk_notebook.ipynb
 ```
 
 ## Setup & Installation
