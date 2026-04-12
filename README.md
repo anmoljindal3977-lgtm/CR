@@ -78,6 +78,16 @@ INPUT → validate_raw_input → validate_input_schema → data_validator → al
 4. Ensure Ollama is installed and available for LLM explanation execution
 5. Run the full project with: `python3 run_full_system.py`
 
+## Dataset Setup
+The project automatically downloads required datasets from Google Drive on first run. 
+
+- **Datasets**: `application_train.csv` and `application_test.csv`
+- **Auto-download**: Files are downloaded to `data/` directory if not already present
+- **Source**: [Home Credit Default Risk - Google Drive](https://drive.google.com/drive/folders/1tNkmIAF7zFr_AXS494tyvp_GqfGdTESX?usp=share_link)
+- **Requirements**: Internet connection needed for first run
+
+No manual download is required. The system will automatically fetch datasets when you run `python3 run_full_system.py`.
+
 ## Running the Full Project
 The preferred end-to-end runner is `run_full_system.py`. It trains the model, runs the main pipeline, executes scenario tests, evaluates the alt credit agent, and writes consolidated outputs.
 
