@@ -9,6 +9,8 @@ import shutil
 env = os.environ.copy()
 env['PYTHONPATH'] = os.getcwd()
 
+from utils.data_loader import ensure_data_available
+
 
 def check_command_exists(command):
     try:
@@ -96,6 +98,10 @@ if __name__ == '__main__':
     # ensure requirements
     print('Ensuring requirements are installed')
     subprocess.run([sys.executable, '-m', 'pip', 'install', '-r', 'requirements.txt'], check=True)
+
+    # ensure datasets are available
+    print('Ensuring datasets are available')
+    ensure_data_available()
 
     # check Ollama
     if not check_command_exists('ollama'):
