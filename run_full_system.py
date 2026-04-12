@@ -3,6 +3,7 @@ import sys
 import subprocess
 import json
 import time
+import shutil
 
 # set PYTHONPATH to current directory for imports
 env = os.environ.copy()
@@ -71,15 +72,35 @@ def run_main_flow():
     print(f'Full output available at {output_path}')
 
 
+def print_ollama_install_hint():
+    print("Ollama is not installed. Install with:")
+    print("Linux (Codespaces): curl -fsSL https://ollama.com/install.sh | sh")
+
+
+def clone_repo():
+    if not os.path.exists('.git'):
+        print('Cloning repository...')
+        subprocess.run(['git', 'clone', 'https://github.com/anmoljindal3977-lgtm/CR.git', 'temp_cr'], check=True)
+        # Move contents to current dir or cd
+        import shutil
+        for item in os.listdir('temp_cr'):
+            shutil.move(os.path.join('temp_cr', item), '.')
+        os.rmdir('temp_cr')
+        print('Repository cloned.')
+
+
 if __name__ == '__main__':
+    # clone repo if not already
+    clone_repo()
+
     # ensure requirements
     print('Ensuring requirements are installed')
     subprocess.run([sys.executable, '-m', 'pip', 'install', '-r', 'requirements.txt'], check=True)
 
     # check Ollama
     if not check_command_exists('ollama'):
-        print_ollama_install_hint()
-        sys.exit(1)
+        print('Installing Ollama...')
+        subprocess.run('curl -fsSL https://ollama.com/install.sh | sh', shell=True, check=True)
 
     # start ollama service
     print('Starting ollama serve...')
