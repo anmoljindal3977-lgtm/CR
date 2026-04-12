@@ -1,13 +1,18 @@
 """
-This script evaluates the alt credit agent using test data.
+This script evaluates the alt credit agent using training data.
 """
 
 import pandas as pd
 from sklearn.metrics import precision_recall_fscore_support
 from agents.alt_credit import generate_alt_credit
+from utils.data_loader import ensure_data_available
 
-# loading sample data
-df = pd.read_csv('data/application_test.csv')
+# ensure training data is available locally (downloads from Google Drive if needed)
+ensure_data_available('data')
+
+# loading training data
+train_path = 'data/application_train.csv'
+df = pd.read_csv(train_path)
 required_columns = [
     'AMT_CREDIT', 'AMT_INCOME_TOTAL', 'AMT_ANNUITY', 'DAYS_BIRTH', 'DAYS_EMPLOYED',
     'EXT_SOURCE_1', 'EXT_SOURCE_2', 'EXT_SOURCE_3', 'SK_ID_CURR'
