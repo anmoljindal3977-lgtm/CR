@@ -4,3 +4,4 @@ lightgbm
 joblib
 langgraph
 pytest
+gdown
