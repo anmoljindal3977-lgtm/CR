@@ -83,7 +83,7 @@ The project automatically downloads required datasets from Google Drive on first
 
 - **Datasets**: `application_train.csv` and `application_test.csv`
 - **Auto-download**: Files are downloaded to `data/` directory if not already present
-- **Source**: [Home Credit Default Risk - Google Drive](https://drive.google.com/drive/folders/1tNkmIAF7zFr_AXS494tyvp_GqfGdTESX?usp=share_link)
+- **Source**: [Home Credit Default Risk - Google Drive](https://drive.google.com/drive/folders/1tNkmIAF7zFr_AXS494tyvp_GqfGdTESX?usp=sharing)
 - **Requirements**: Internet connection needed for first run
 
 No manual download is required. The system will automatically fetch datasets when you run `python3 run_full_system.py`.
