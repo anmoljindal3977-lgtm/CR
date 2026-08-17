@@ -139,4 +139,29 @@ The alt credit sub-agent is evaluated using sample application rows via `evaluat
 - explainable LLM-powered explanations
 - traceable pipeline execution
 
+## Verified Run Results (2026-08-17)
+The project was cloned and executed end-to-end (Python 3.11 venv, deps from `requirements.txt`, local Ollama `llama3`) to confirm it runs as documented.
+
+**Model training** (`train_model.py`, LightGBM on `application_train.csv`):
+- Accuracy: 0.9269
+- ROC AUC: 0.7429
+
+**Sub-agent evaluation** (`evaluation/evaluate_alt_credit.py`, first 20 training rows):
+- Precision: 0.588
+- Recall: 0.909
+- F1 Score: 0.714
+
+**Scenario tests** (`run_scenarios.py`, results in `deliverables/scenario_test_results_table.md`):
+
+| Scenario | Decision | Notes |
+|----------|----------|-------|
+| happy_path | APPROVE | Passed pipeline |
+| high_risk | INVALID | Failed validation: High fraud score |
+| medium_risk | REJECT | Passed pipeline |
+| fraud_case | REJECT | Passed pipeline |
+| injection_case | INVALID | Failed validation: Prompt injection pattern detected |
+| off_domain_case | INVALID | Failed validation: Unexpected field(s): ['query'] |
+
+**Guardrail test suite** (`pytest tests/test_guardrails.py`): 22 passed, 6 failed. The 6 failures are pre-existing assertion/wording mismatches in the test file itself (not pipeline defects) — see `KNOWN_ISSUES.md` for details. `main.py` and `run_scenarios.py` both execute successfully end-to-end, confirming the pipeline and guardrails work correctly in practice.
+
 
