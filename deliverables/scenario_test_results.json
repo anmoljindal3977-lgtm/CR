@@ -20,7 +20,7 @@
             "decision": "APPROVE",
             "reason": "Low default probability and good alternative credit score"
         },
-        "explanation": "Approve: credit is low risk based on score model and alternative credit check.",
+        "explanation": "Based on the input, I can explain the system outcome as follows:\n\nThe applicant's credit request has been APPROVED, indicating a low risk of default. This is because their default probability is relatively low (0.[REDACTED]) and they also have a good alternative credit score (0.625).",
         "trace": [
             {
                 "step": "validator",
@@ -56,7 +56,7 @@
             },
             {
                 "step": "explanation",
-                "output": "Approve: credit is low risk based on score model and alternative credit check."
+                "output": "Based on the input, I can explain the system outcome as follows:\n\nThe applicant's credit request has been APPROVED, indicating a low risk of default. This is because their default probability is relatively low (0.[REDACTED]) and they also have a good alternative credit score (0.625)."
             }
         ]
     },
@@ -73,7 +73,7 @@
             "decision": "INVALID",
             "reason": "High fraud score"
         },
-        "explanation": "Invalid input: High fraud score.",
+        "explanation": "\"Input contains malicious content and is rejected for safety. High fraud score detected in the input.\"",
         "trace": [
             {
                 "step": "validator",
@@ -86,7 +86,7 @@
             },
             {
                 "step": "explanation",
-                "output": "Invalid input: High fraud score."
+                "output": "\"Input contains malicious content and is rejected for safety. High fraud score detected in the input.\""
             }
         ]
     },
@@ -118,7 +118,7 @@
                 "decision_reason": "Moderate risk, requires manual review"
             }
         },
-        "explanation": "Reject: high risk or validation issue detected.",
+        "explanation": "High risk of default, not recommended.\n\nThe credit application was deemed too risky and has been rejected after a manual review. This decision is based on the probability of default (0.0954) and an alternative credit score (0.36), which indicate a higher likelihood of non-repayment.",
         "trace": [
             {
                 "step": "validator",
@@ -161,7 +161,7 @@
             },
             {
                 "step": "explanation",
-                "output": "Reject: high risk or validation issue detected."
+                "output": "High risk of default, not recommended.\n\nThe credit application was deemed too risky and has been rejected after a manual review. This decision is based on the probability of default (0.0954) and an alternative credit score (0.36), which indicate a higher likelihood of non-repayment."
             }
         ]
     },
@@ -183,8 +183,8 @@
             "comment": "simple probability from model"
         },
         "decision": {
-            "decision": "APPROVE",
-            "reason": "Approved after manual review",
+            "decision": "REJECT",
+            "reason": "Rejected after manual review",
             "manual_review_details": {
                 "risk_probability": 0.05601005372584981,
                 "alt_credit_score": 0.625,
@@ -193,7 +193,7 @@
                 "decision_reason": "Moderate risk, requires manual review"
             }
         },
-        "explanation": "Approve: credit is low risk based on score model and alternative credit check.",
+        "explanation": "High risk of default, not recommended.\n\nThe system has rejected the credit application due to a high probability of default, which is evident from the p_default value (0.05601005372584981) and alt_credit_score (0.625). Although the application was initially deemed valid, further review revealed concerns that outweighed the initial assessment, leading to rejection.",
         "trace": [
             {
                 "step": "validator",
@@ -223,8 +223,8 @@
             {
                 "step": "decision",
                 "output": {
-                    "decision": "APPROVE",
-                    "reason": "Approved after manual review",
+                    "decision": "REJECT",
+                    "reason": "Rejected after manual review",
                     "manual_review_details": {
                         "risk_probability": 0.05601005372584981,
                         "alt_credit_score": 0.625,
@@ -236,7 +236,7 @@
             },
             {
                 "step": "explanation",
-                "output": "Approve: credit is low risk based on score model and alternative credit check."
+                "output": "High risk of default, not recommended.\n\nThe system has rejected the credit application due to a high probability of default, which is evident from the p_default value (0.05601005372584981) and alt_credit_score (0.625). Although the application was initially deemed valid, further review revealed concerns that outweighed the initial assessment, leading to rejection."
             }
         ]
     },
@@ -253,7 +253,7 @@
             "decision": "INVALID",
             "reason": "Prompt injection pattern detected."
         },
-        "explanation": "Invalid input: Prompt injection pattern detected..",
+        "explanation": "The system outcome is that the input contains malicious content and has been rejected for safety.",
         "trace": [
             {
                 "step": "validator",
@@ -266,7 +266,7 @@
             },
             {
                 "step": "explanation",
-                "output": "Invalid input: Prompt injection pattern detected.."
+                "output": "The system outcome is that the input contains malicious content and has been rejected for safety."
             }
         ]
     },
@@ -283,7 +283,7 @@
             "decision": "INVALID",
             "reason": "Unexpected field(s): ['query']."
         },
-        "explanation": "Invalid input: Unexpected field(s): ['query']..",
+        "explanation": "The system has detected that the input contains unexpected fields. As a result, the input is deemed invalid and rejected for safety reasons. The unexpected field(s) are listed as 'query', which suggests that there was an attempt to inject malicious data into the system. This type of input is not permitted and the system is designed to prevent such attempts from causing harm or disrupting its normal functioning.",
         "trace": [
             {
                 "step": "validator",
@@ -296,7 +296,7 @@
             },
             {
                 "step": "explanation",
-                "output": "Invalid input: Unexpected field(s): ['query'].."
+                "output": "The system has detected that the input contains unexpected fields. As a result, the input is deemed invalid and rejected for safety reasons. The unexpected field(s) are listed as 'query', which suggests that there was an attempt to inject malicious data into the system. This type of input is not permitted and the system is designed to prevent such attempts from causing harm or disrupting its normal functioning."
             }
         ]
     }
